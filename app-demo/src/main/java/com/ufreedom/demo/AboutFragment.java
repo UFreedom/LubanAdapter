@@ -1,4 +1,4 @@
-package com.ufreedom.lubanadapter;
+package com.ufreedom.demo;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

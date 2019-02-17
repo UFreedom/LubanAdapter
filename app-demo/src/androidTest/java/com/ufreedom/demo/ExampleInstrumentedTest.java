@@ -1,4 +1,4 @@
-package com.ufreedom.lubanadapter;
+package com.ufreedom.demo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.ufreedom.lubanadapter", appContext.getPackageName());
+        assertEquals("com.ufreedom.demo", appContext.getPackageName());
     }
 }

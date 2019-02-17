@@ -1,4 +1,4 @@
-package com.ufreedom.lubanadapter;
+package com.ufreedom.demo;
 
 import org.junit.Test;
 

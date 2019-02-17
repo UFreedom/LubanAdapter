@@ -1,1 +1,2 @@
-include ':app', ':lubanadapter-compiler', ':lubanadapter-annotations', ':lubanadapter-api', ':app-module-demo'
+include  ':lubanadapter-compiler', ':lubanadapter-annotations', ':lubanadapter-api', ':app-module-demo',':app-demo'
+
