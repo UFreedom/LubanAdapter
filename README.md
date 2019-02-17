@@ -1,6 +1,33 @@
-# LubanAdapter
 
-基于注解技术，在实现 RecyclerView Adapter 能够更加方便
+
+<p align="center">
+  <img  with="750"  height="250" src="https://github.com/UFreedom/LubanAdapter/blob/master/art/banner.png">
+</p>
+
+<h3 align="center">Luban Adapter</h1>
+
+<div align="center">
+
+Make it more easy to work with RecyclerView.
+
+
+#### Lastest version
+
+module|LubanAdapter-api|LubanAdapter-compiler
+---|---|---|---|---
+version|[![Download](https://api.bintray.com/packages/ufreedom/maven/lubanadapter-api/images/download.svg) ](https://bintray.com/ufreedom/maven/lubanadapter-api/_latestVersion)|[ ![Download](https://api.bintray.com/packages/ufreedom/maven/lubanadapter-compiler/images/download.svg) ](https://bintray.com/ufreedom/maven/lubanadapter-compiler/_latestVersion)
+
+</div>
+
+
+### 👉 Features
+
+
+### 🖥 Usage
+
+
+
+
 
 License
 --------
