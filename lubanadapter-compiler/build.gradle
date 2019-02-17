@@ -1,0 +1,17 @@
+import org.gradle.internal.jvm.Jvm
+
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':lubanadapter-annotations')
+    implementation deps.auto.service
+    implementation deps.javapoet
+
+    /** Provides the sun javac tools for looking up the R class trees. */
+    compileOnly files(Jvm.current().getToolsJar())
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
