@@ -1,5 +1,14 @@
 apply plugin: 'com.android.library'
 
+ext {
+    bintrayName = 'lubanadapter-api'
+    artifact = bintrayName
+    libraryName = 'LubanAdapter api'
+    libraryDescription = 'API for LubanAdapter'
+    libraryVersion = lubanadapter_api_version
+}
+
+
 android {
     compileSdkVersion versions.compileSdk
 
@@ -35,3 +44,6 @@ dependencies {
 
 
 }
+
+apply from: '../install.gradle'
+apply from: '../bintray.gradle'

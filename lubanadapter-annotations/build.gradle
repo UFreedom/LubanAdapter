@@ -1,8 +1,23 @@
 apply plugin: 'java-library'
 
+ext {
+    bintrayName = 'lubanadapter-annotations'
+    artifact = bintrayName
+    libraryName = 'LubanAdapter annotations'
+    libraryDescription = 'Annotations for LubanAdapter'
+    libraryVersion = lubanadapter_annotation_version
+}
+
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
 
-sourceCompatibility = "7"
-targetCompatibility = "7"
+compileJava {
+    sourceCompatibility = '1.7'
+    targetCompatibility = '1.7'
+}
+
+
+apply from: '../install.gradle'
+apply from: '../bintray.gradle'

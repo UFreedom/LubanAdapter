@@ -2,6 +2,14 @@ import org.gradle.internal.jvm.Jvm
 
 apply plugin: 'java-library'
 
+ext {
+    bintrayName = 'lubanadapter-compiler'
+    artifact = bintrayName
+    libraryName = 'LubanAdapter compiler'
+    libraryDescription = 'Compiler for LubanAdapter'
+    libraryVersion = lubanadapter_compiler_version
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -13,5 +21,11 @@ dependencies {
     compileOnly files(Jvm.current().getToolsJar())
 }
 
-sourceCompatibility = "7"
-targetCompatibility = "7"
+compileJava {
+    sourceCompatibility = '1.7'
+    targetCompatibility = '1.7'
+}
+
+
+apply from: '../install.gradle'
+apply from: '../bintray.gradle'
