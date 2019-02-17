@@ -14,7 +14,7 @@ Make it more easy to work with RecyclerView.
 #### Lastest version
 
 module|LubanAdapter-api|LubanAdapter-compiler
----|---|---|---|---
+---|---|---|
 version|[![Download](https://api.bintray.com/packages/ufreedom/maven/lubanadapter-api/images/download.svg) ](https://bintray.com/ufreedom/maven/lubanadapter-api/_latestVersion)|[ ![Download](https://api.bintray.com/packages/ufreedom/maven/lubanadapter-compiler/images/download.svg) ](https://bintray.com/ufreedom/maven/lubanadapter-compiler/_latestVersion)
 
 </div>
