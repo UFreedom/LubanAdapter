@@ -28,5 +28,6 @@ dependencies {
     implementation deps.android.appcompat
     implementation deps.android.recyclerview
     implementation deps.android.constraint
+    implementation deps.android.design
 
 }
