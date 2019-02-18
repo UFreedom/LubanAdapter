@@ -38,7 +38,7 @@ dependencies {
 
     implementation project(':app-module-demo')
 
-    implementation 'com.ufreedom.kit:lubanadapter-api:1.0.2'
-    annotationProcessor 'com.ufreedom.kit:lubanadapter-compiler:1.0.2'
+    implementation project(':lubanadapter-api')
+    annotationProcessor project(':lubanadapter-compiler')
 
 }
