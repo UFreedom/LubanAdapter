@@ -33,7 +33,14 @@ public abstract class LubanRecyclerViewAdapter extends RecyclerView.Adapter<Luba
     @NonNull
     @Override
     public LubanViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LubanViewHolder lubanViewHolder = mAdapterProxy.createViewHolder(mInflater, parent, viewType);
+        IViewHolder viewHolder = mAdapterProxy.createViewHolder(mInflater, parent, viewType);
+
+        if (!(viewHolder instanceof LubanViewHolder)) {
+            throw new IllegalStateException(String.format("Please make %s extends LubanViewHolder when use LubanRecyclerViewAdapter"
+                    ,viewHolder.getClass().getName()));
+        }
+
+        LubanViewHolder lubanViewHolder = (LubanViewHolder) viewHolder;
         onViewHolderCreated(lubanViewHolder, parent, viewType);
         if (onItemClickListener != null) {
             lubanViewHolder.setOnItemClickListener(onItemClickListener);

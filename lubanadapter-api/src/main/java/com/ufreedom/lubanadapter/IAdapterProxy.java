@@ -13,7 +13,7 @@ public interface IAdapterProxy {
     /**
      * Proxy for RecyclerView.Adapter.onCreateViewHolder(ViewGroup, int)
      */
-    LubanViewHolder createViewHolder(LayoutInflater inflater, ViewGroup parent, int viewType);
+    IViewHolder createViewHolder(LayoutInflater inflater, ViewGroup parent, int viewType);
 
     /**
      * Proxy for RecyclerView.Adapter.getItemViewType(int)

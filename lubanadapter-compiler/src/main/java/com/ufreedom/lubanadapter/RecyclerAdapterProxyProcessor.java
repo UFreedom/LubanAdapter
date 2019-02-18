@@ -280,7 +280,7 @@ public class RecyclerAdapterProxyProcessor extends AbstractProcessor {
                     .addParameter(Constants.LAYOUT_INFLATER,"inflater")
                     .addParameter(Constants.VIEW_GROUP,"parent")
                     .addParameter(int.class,"viewType")
-                    .returns(Constants.LUBAN_VIEW_HOLDER)
+                    .returns(Constants.BASE_VIEW_HOLDER)
                     .addStatement("$T view", Constants.VIEW);
 
             for (HolderMapElement holderElement : holderInfoList) {

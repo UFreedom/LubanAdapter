@@ -10,6 +10,8 @@ class Constants {
 
     static final ClassName ADAPTER_PROXY = ClassName.get("com.ufreedom.lubanadapter", "IAdapterProxy");
 
+    static final ClassName BASE_VIEW_HOLDER = ClassName.get("com.ufreedom.lubanadapter", "IViewHolder");
+
     static final ClassName LUBAN_VIEW_HOLDER = ClassName.get("com.ufreedom.lubanadapter", "LubanViewHolder");
 
     static final ClassName VIEW_GROUP = ClassName.get("android.view", "ViewGroup");

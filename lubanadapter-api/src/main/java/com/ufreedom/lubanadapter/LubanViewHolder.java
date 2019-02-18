@@ -17,7 +17,7 @@ import com.ufreedom.lubanadapter.listener.OnItemLongClickListener;
  * Created by UFreedom on 2019/2/17.
  */
 
-public abstract class LubanViewHolder<MODEL> extends RecyclerView.ViewHolder {
+public abstract class LubanViewHolder<MODEL> extends RecyclerView.ViewHolder implements IViewHolder<MODEL> {
 
 
     private OnItemClickListener onItemClickListener;
@@ -76,8 +76,6 @@ public abstract class LubanViewHolder<MODEL> extends RecyclerView.ViewHolder {
         });
     }
 
-    public abstract void onBindViewHolder(MODEL model, int position);
-
 
     protected Context getContext() {
         return itemView.getContext();
@@ -112,24 +110,13 @@ public abstract class LubanViewHolder<MODEL> extends RecyclerView.ViewHolder {
         return getResources().getColor(id);
     }
 
-    /**
-     * Called when a view created by this adapter has been attached to a window.
-     * <p>
-     * <p>This can be used as a reasonable signal that the view is about to be seen
-     * by the user.
-     */
-    protected void onViewAttachedToWindow() {
+    @Override
+    public void onViewAttachedToWindow() {
 
     }
 
-    /**
-     * Called when a view created by this adapter has been detached from its window.
-     * <p>
-     * <p>Becoming detached from the window is not necessarily a permanent condition;
-     * the consumer of an Adapter's views may choose to cache views offscreen while they
-     * are not visible, attaching and detaching them as appropriate.</p>
-     */
-    protected void onViewDetachedFromWindow() {
+    @Override
+    public void onViewDetachedFromWindow() {
 
     }
 
