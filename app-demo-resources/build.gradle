@@ -1,11 +1,11 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion versions.compileSdk
 
 
+
     defaultConfig {
-        applicationId "com.ufreedom.demo"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
         versionCode 1
@@ -18,7 +18,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -26,21 +26,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation deps.android.appcompat
-    implementation deps.android.recyclerview
-    implementation deps.android.constraint
-    implementation deps.android.design
-    implementation deps.android.annotations
-
-    implementation project(':app-module-demo')
-
-    implementation project(':lubanadapter-api')
-    implementation project(':lubanadapter-annotations')
-    annotationProcessor project(':lubanadapter-compiler')
 
 }

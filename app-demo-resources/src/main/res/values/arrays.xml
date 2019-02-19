@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="zootopia_role_name">
+        <item>Chief Bogo</item>
+        <item>Mayor Lionheart</item>
+        <item>Officer Clawhauser</item>
+        <item>Bellwether</item>
+        <item>Yak</item>
+        <item>Mrs. Otterton</item>
+        <item>Bonnie and Stu Hopps</item>
+        <item>Duke Weaselton</item>
+        <item>Finnick</item>
+        <item>Flash</item>
+        <item>Nick Wilde</item>
+        <item>Judy Hopps</item>
+    </string-array>
+
+
+    <integer-array name="zootopia_role_picture">
+        <item>@drawable/zootopia_cheif_bogo</item>
+        <item>@drawable/zootopia_lionheart</item>
+        <item>@drawable/zootopia_officer_clawhauser</item>
+        <item>@drawable/zootopia_bellweather</item>
+        <item>@drawable/zootopia_yax</item>
+        <item>@drawable/zootopia_mrsotterton</item>
+        <item>@drawable/zootopia_bonnie_and_stu_hopps</item>
+        <item>@drawable/zootopia_duke_weasleton</item>
+        <item>@drawable/zootopia_finnick</item>
+        <item>@drawable/zootopia_flash</item>
+        <item>@drawable/zootopia_nick_wilde</item>
+        <item>@drawable/zootopia_judy_hopps</item>
+    </integer-array>
+
+</resources>
