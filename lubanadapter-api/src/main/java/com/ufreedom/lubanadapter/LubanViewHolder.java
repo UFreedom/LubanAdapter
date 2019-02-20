@@ -81,7 +81,7 @@ public abstract class LubanViewHolder<MODEL> extends RecyclerView.ViewHolder imp
         return itemView.getContext();
     }
 
-    protected View findViewById(int id) {
+    protected <T extends View> T  findViewById(int id) {
         return itemView.findViewById(id);
     }
 
