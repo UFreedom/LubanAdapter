@@ -38,6 +38,7 @@ dependencies {
     implementation deps.android.annotations
 
     implementation project(':app-module-demo')
+    implementation project(':app-demo-resources')
 
     implementation project(':lubanadapter-api')
     implementation project(':lubanadapter-annotations')

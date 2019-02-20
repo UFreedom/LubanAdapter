@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.ufreedom.module.ModuleFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,12 +21,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BottomNavigationView navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
+        fragmentList = new ArrayList<>();
         fragmentList.add(new MainFragment());
         fragmentList.add(new ModuleFragment());
         fragmentList.add(new AboutFragment());
+
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setSelectedItemId(R.id.navigation_home);
     }
 
 

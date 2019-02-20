@@ -9,4 +9,7 @@ public class ImageModel implements IRVModel {
 
     public int resId;
 
+    public ImageModel(int resId) {
+        this.resId = resId;
+    }
 }
