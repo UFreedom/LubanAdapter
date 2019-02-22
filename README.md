@@ -27,6 +27,17 @@ version|[![Download](https://api.bintray.com/packages/ufreedom/maven/lubanadapte
 
 ### 🖥 Usage
 
+##### Step 1
+
+Add dependencies in build.gradle.
+
+```groovy
+    dependencies {
+        compile 'com.ufreedom.uikit:lubanadapter-api:1.0.0'
+        annotationProcessor 'com.ufreedom.uikit:lubanadapter-compiler:1.0.0'
+    }
+
+```
 
 
 
