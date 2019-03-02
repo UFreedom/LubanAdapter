@@ -13,7 +13,8 @@ ext {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.ufreedom.kit:lubanadapter-annotations:1.0.1'
+    //implementation 'com.ufreedom.kit:lubanadapter-annotations:1.0.1'
+    implementation project(':lubanadapter-annotations')
     implementation deps.auto.service
     implementation deps.javapoet
 
@@ -22,10 +23,10 @@ dependencies {
 }
 
 compileJava {
-    sourceCompatibility = '1.7'
-    targetCompatibility = '1.7'
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
 }
 
 
-apply from: '../install.gradle'
-apply from: '../bintray.gradle'
+/*apply from: '../install.gradle'
+apply from: '../bintray.gradle'*/

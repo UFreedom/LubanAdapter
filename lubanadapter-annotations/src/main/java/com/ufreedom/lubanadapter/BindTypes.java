@@ -11,8 +11,8 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.CLASS)
-public @interface Holders {
+public @interface BindTypes {
 
-    Holder[] value();
+    BindType[] value();
 
 }

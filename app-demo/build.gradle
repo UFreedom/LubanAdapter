@@ -41,7 +41,7 @@ dependencies {
     implementation project(':app-demo-resources')
 
     implementation project(':lubanadapter-api')
-    implementation project(':lubanadapter-annotations')
+    /*implementation project(':lubanadapter-annotations')*/
     annotationProcessor project(':lubanadapter-compiler')
 
 }

@@ -50,7 +50,7 @@ public class RecyclerAdapterProxyProcessor extends AbstractProcessor {
     private Elements elementUtils;
     private Types typeUtils;
     private ResourceProcessor resourceProcessor;
-    private Map<TypeElement,List<HolderMapElement>> holderInfoMap = new HashMap<>();
+    private Map<TypeElement,List<ViewTypeMapElement>> holderInfoMap = new HashMap<>();
     private int defaultTypeValue = 10000;
 
     @Override
@@ -135,24 +135,24 @@ public class RecyclerAdapterProxyProcessor extends AbstractProcessor {
 
 
     private void collectionInfo(RoundEnvironment env) {
-        Holder holderType;
+        BindType holderType;
 
-        for (Element element : env.getElementsAnnotatedWith(Holder.class)) {
+        for (Element element : env.getElementsAnnotatedWith(BindType.class)) {
 
-            if (!validateAnnotationClass(Holder.class, element)) continue;
+            if (!validateAnnotationClass(BindType.class, element)) continue;
 
-            holderType = element.getAnnotation(Holder.class);
+            holderType = element.getAnnotation(BindType.class);
 
-            AnnotationValue modelClassAnnotation = getValue((TypeElement) element, Holder.class, "model");
-            AnnotationValue holderClassAnnotation = getValue((TypeElement) element, Holder.class, "holder");
+            AnnotationValue modelClassAnnotation = getValue((TypeElement) element, BindType.class, "model");
+            AnnotationValue holderClassAnnotation = getValue((TypeElement) element, BindType.class, "holder");
 
             AndroidResource layoutResource = resourceProcessor.getResourceForValue(holderType.layout());
-            List<HolderMapElement> holderInfoList = new ArrayList<>();
-            HolderMapElement holderInfo;
-            if (holderType.position() != Holder.POSITION_NONE) {
-                holderInfo = new HolderMapElement(holderType.position(), getClassName(modelClassAnnotation));
+            List<ViewTypeMapElement> holderInfoList = new ArrayList<>();
+            ViewTypeMapElement holderInfo;
+            if (holderType.position() != BindType.POSITION_NONE) {
+                holderInfo = new ViewTypeMapElement(holderType.position(), getClassName(modelClassAnnotation));
             } else {
-                holderInfo = new HolderMapElement(getClassName(modelClassAnnotation), getClassName(holderClassAnnotation));
+                holderInfo = new ViewTypeMapElement(getClassName(modelClassAnnotation), getClassName(holderClassAnnotation));
             }
             holderInfo.layoutCodeBlock = layoutResource.getCode();
 
@@ -163,16 +163,16 @@ public class RecyclerAdapterProxyProcessor extends AbstractProcessor {
 
         }
 
-        for (Element element : env.getElementsAnnotatedWith(Holders.class)) {
+        for (Element element : env.getElementsAnnotatedWith(BindTypes.class)) {
 
-            if (!validateAnnotationClass(Holders.class, element)) continue;
+            if (!validateAnnotationClass(BindTypes.class, element)) continue;
 
             List<? extends AnnotationMirror> annotationMirrors = element.getAnnotationMirrors();
 
             AnnotationMirror holdTypesMirrors = annotationMirrors.get(0);
             Attribute.Array attributes = (Attribute.Array) holdTypesMirrors.getElementValues().values().toArray()[0];
 
-            List<HolderMapElement> holderInfoList = new ArrayList<>();
+            List<ViewTypeMapElement> holderInfoList = new ArrayList<>();
 
             for (Attribute value : attributes.values) {
 
@@ -183,14 +183,14 @@ public class RecyclerAdapterProxyProcessor extends AbstractProcessor {
                 AnnotationValue layoutValue = getAnnotationValue(annotationMirror, "layout");
                 AnnotationValue positionValue = getAnnotationValue(annotationMirror, "position");
 
-                HolderMapElement holderInfo;
+                ViewTypeMapElement holderInfo;
                 Integer layout = Integer.parseInt(layoutValue.toString());
                 AndroidResource layoutResource = resourceProcessor.getResourceForValue(layout);
 
                 if (positionValue != null) {
-                    holderInfo = new HolderMapElement(Integer.parseInt(positionValue.getValue().toString()), getClassName(holderValue));
+                    holderInfo = new ViewTypeMapElement(Integer.parseInt(positionValue.getValue().toString()), getClassName(holderValue));
                 } else {
-                    holderInfo = new HolderMapElement(getClassName(modelValue), getClassName(holderValue));
+                    holderInfo = new ViewTypeMapElement(getClassName(modelValue), getClassName(holderValue));
                 }
                 holderInfo.layoutCodeBlock = layoutResource.getCode();
 
@@ -223,12 +223,12 @@ public class RecyclerAdapterProxyProcessor extends AbstractProcessor {
                     .build();
             typeSpecBuilder.addMethod(defaultCtor);
 
-            List<HolderMapElement> holderInfoList = holderInfoMap.get(element);
+            List<ViewTypeMapElement> holderInfoList = holderInfoMap.get(element);
 
             //Filter position -> holder, model -> holder
-            List<HolderMapElement> position2HolderList = new ArrayList<>();
-            List<HolderMapElement> model2HolderList = new ArrayList<>();
-            for (HolderMapElement holderElement : holderInfoList) {
+            List<ViewTypeMapElement> position2HolderList = new ArrayList<>();
+            List<ViewTypeMapElement> model2HolderList = new ArrayList<>();
+            for (ViewTypeMapElement holderElement : holderInfoList) {
                 if (holderElement.isByPosition()) {
                     position2HolderList.add(holderElement);
                 } else {
@@ -237,7 +237,7 @@ public class RecyclerAdapterProxyProcessor extends AbstractProcessor {
             }
 
             //1.Generate item type constant
-            for (HolderMapElement holderElement : holderInfoList) {
+            for (ViewTypeMapElement holderElement : holderInfoList) {
                 FieldSpec typeField = FieldSpec.builder(int.class, "ITEM_TYPE_" + defaultTypeValue)
                         .addModifiers(Modifier.PRIVATE, Modifier.FINAL,Modifier.STATIC)
                         .initializer("$L",defaultTypeValue)
@@ -256,7 +256,7 @@ public class RecyclerAdapterProxyProcessor extends AbstractProcessor {
                     .returns(int.class);
 
             //2-1. position -> holder
-            for (HolderMapElement holderElement : position2HolderList) {
+            for (ViewTypeMapElement holderElement : position2HolderList) {
                 methodBuilder.beginControlFlow("if (position == $L)",holderElement.position)
                         .addStatement("return ITEM_TYPE_$L",holderElement.generateType)
                         .endControlFlow();
@@ -264,7 +264,7 @@ public class RecyclerAdapterProxyProcessor extends AbstractProcessor {
 
 
             //2-2. model -> holder
-            for (HolderMapElement holderElement : model2HolderList) {
+            for (ViewTypeMapElement holderElement : model2HolderList) {
                 methodBuilder.beginControlFlow("if (model instanceof $T)",holderElement.modelClass)
                         .addStatement("return ITEM_TYPE_$L",holderElement.generateType)
                         .endControlFlow();
@@ -283,7 +283,7 @@ public class RecyclerAdapterProxyProcessor extends AbstractProcessor {
                     .returns(Constants.BASE_VIEW_HOLDER)
                     .addStatement("$T view", Constants.VIEW);
 
-            for (HolderMapElement holderElement : holderInfoList) {
+            for (ViewTypeMapElement holderElement : holderInfoList) {
                 methodBuilder2.beginControlFlow("if (viewType == ITEM_TYPE_$L)",holderElement.generateType)
                         .addStatement("view = inflater.inflate($L, parent, false)",holderElement.layoutCodeBlock)
                         .addStatement("return new $T(view)",holderElement.holderClass)
@@ -319,8 +319,8 @@ public class RecyclerAdapterProxyProcessor extends AbstractProcessor {
     static Set<Class<? extends Annotation>> getSupportedAnnotations() {
         Set<Class<? extends Annotation>> annotations = new LinkedHashSet<>();
 
-        annotations.add(Holder.class);
-        annotations.add(Holders.class);
+        annotations.add(BindType.class);
+        annotations.add(BindTypes.class);
 
         return annotations;
     }

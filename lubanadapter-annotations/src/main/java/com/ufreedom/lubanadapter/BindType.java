@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.CLASS)
-public @interface Holder {
+public @interface BindType {
 
     int POSITION_NONE = -1;
 

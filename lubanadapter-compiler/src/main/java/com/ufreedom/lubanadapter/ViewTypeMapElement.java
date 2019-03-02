@@ -7,7 +7,7 @@ import com.squareup.javapoet.CodeBlock;
  * Created by Sun Meng on 2019/2/17.
  */
 
-class HolderMapElement {
+class ViewTypeMapElement {
 
     int position;
 
@@ -20,18 +20,18 @@ class HolderMapElement {
     int generateType;
 
 
-    HolderMapElement(int position, ClassName holderClass) {
+    ViewTypeMapElement(int position, ClassName holderClass) {
         this.position = position;
         this.holderClass = holderClass;
     }
 
-    HolderMapElement(ClassName modelClass, ClassName holderClass) {
+    ViewTypeMapElement(ClassName modelClass, ClassName holderClass) {
         this.modelClass = modelClass;
         this.holderClass = holderClass;
-        position = Holder.POSITION_NONE;
+        position = BindType.POSITION_NONE;
     }
 
     boolean isByPosition() {
-        return position != Holder.POSITION_NONE;
+        return position != BindType.POSITION_NONE;
     }
 }

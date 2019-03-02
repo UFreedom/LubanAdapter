@@ -10,10 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ufreedom.demo.holder.ImageHolder;
+import com.ufreedom.demo.holder.ImageTextMixedHolder;
 import com.ufreedom.demo.model.ImageModel;
 import com.ufreedom.demo.model.ImageTextMixedModel;
 import com.ufreedom.demo_res.Zootopia;
 import com.ufreedom.lubanadapter.IRVModel;
+import com.ufreedom.lubanadapter.LubanAdapter;
+import com.ufreedom.lubanadapter.LubanAdapterHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,19 +45,24 @@ public class MainFragment extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         DemoAdapter demoAdapter = new DemoAdapter(getContext());
-
         List<Zootopia> zootopiaList = Zootopia.getZootopiaRoleList(requireContext());
 
         List<IRVModel> irvModelList = new ArrayList<>();
 
         for (Zootopia zootopia : zootopiaList) {
             irvModelList.add(new ImageModel(zootopia.getRolePicture()));
-            irvModelList.add(new ImageTextMixedModel(zootopia.getRolePicture(),zootopia.getRoleName()));
+            irvModelList.add(new ImageTextMixedModel(zootopia.getRolePicture(), zootopia.getRoleName()));
         }
 
         Collections.shuffle(irvModelList);
-        demoAdapter.setModelList(irvModelList);
+        demoAdapter.setDataList(irvModelList);
 
-        recyclerView.setAdapter(demoAdapter);
+        LubanAdapter<IRVModel> lubanAdapter = LubanAdapterHelper.create(getContext())
+                .register(ImageModel.class, R.layout.view_item_image, ImageHolder.class)
+                .register(ImageTextMixedModel.class, R.layout.view_item_image_text_mixed, ImageTextMixedHolder.class)
+                .apply();
+
+        lubanAdapter.setDataList(irvModelList);
+        recyclerView.setAdapter(lubanAdapter);
     }
 }
