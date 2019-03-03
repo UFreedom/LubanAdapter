@@ -33,8 +33,8 @@ Add dependencies in build.gradle.
 
 ```groovy
     dependencies {
-        compile 'com.ufreedom.uikit:lubanadapter-api:1.0.0'
-        annotationProcessor 'com.ufreedom.uikit:lubanadapter-compiler:1.0.0'
+        compile 'com.ufreedom.kit:lubanadapter-api:1.2.0'
+        annotationProcessor 'com.ufreedom.kit:lubanadapter-compiler:1.2.0.1'
     }
 
 ```
