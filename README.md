@@ -23,6 +23,8 @@ version|[![Download](https://api.bintray.com/packages/ufreedom/maven/lubanadapte
 
 
 ### 👉 Features
+- Support LubanApdaterHelper to bind layout,model and ViewHolder
+- Support @BindType or @BindTypes annotations to bind layout,model and ViewHolder
 
 
 ### 🖥 Usage
