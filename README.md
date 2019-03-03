@@ -51,7 +51,7 @@ Create your model
 And then create your ViewHolder
 
 ```java
-    public class ImageHolder extends LubanViewHolder<Animals> {
+    public class AnimalsHolder extends LubanViewHolder<Animals> {
 
     public ImageHolder(View itemView) {
         super(itemView);
@@ -72,10 +72,11 @@ Thear have two easy way to do this:
 - Use LubanAdapterHelper
 
 ```java
-       LubanAdapter<Animals> lubanAdapter = LubanAdapterHelper.create(context)
+    LubanAdapter<Animals> lubanAdapter = LubanAdapterHelper.create(context)
                 .register(Animals.class, R.layout.view_item_animals,AnimalsHolder.class)
                 .apply();
     lubanAdapter.setAdataList(AnimalsList);
+
     recyclerView.setAdapter(lubanAdapter);
 ```
 
@@ -84,7 +85,7 @@ Thear have two easy way to do this:
 Use anotations is much more easy
 
 ```java
- @BindType(layout = R.layout.view_item_animals, model = Animals.class, holder = AnimalsHolder.class)
+@BindType(layout = R.layout.view_item_animals, model = Animals.class, holder = AnimalsHolder.class)
 public class AnimalsAdapter extends LubanAdapter<Animals> {
     public DemoAdapter(Context context) {
         super(context);
