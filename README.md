@@ -39,8 +39,59 @@ Add dependencies in build.gradle.
 
 ```
 
+##### Step 2
 
+Create your model
 
+```java
+    public class Animals {
+    }
+```
+
+And then create your ViewHolder
+
+```java
+    public class ImageHolder extends LubanViewHolder<Animals> {
+
+    public ImageHolder(View itemView) {
+        super(itemView);
+        //Hear to find views
+    }
+
+    @Override
+    public void onBindViewHolder(Animals animalsModel, int position) {
+        //Hear to bind view with you model data
+    }
+}
+```
+
+##### Step 3
+Use LubanAdapter to bind your layout,model,and ViewHolder.
+Thear have two easy way to do this:
+
+- Use LubanAdapterHelper
+
+```java
+       LubanAdapter<Animals> lubanAdapter = LubanAdapterHelper.create(context)
+                .register(Animals.class, R.layout.view_item_animals,AnimalsHolder.class)
+                .apply();
+    lubanAdapter.setAdataList(AnimalsList);
+    recyclerView.setAdapter(lubanAdapter);
+```
+
+- Use @BindType or @BindTypes annotations
+
+Use anotations is much more easy
+
+```java
+ @BindType(layout = R.layout.view_item_animals, model = Animals.class, holder = AnimalsHolder.class)
+public class AnimalsAdapter extends LubanAdapter<Animals> {
+    public DemoAdapter(Context context) {
+        super(context);
+    }
+}
+recyclerView.setAdapter(new AnimalsAdapter(content));
+```
 
 License
 --------
