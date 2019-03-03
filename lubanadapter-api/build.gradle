@@ -40,8 +40,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     compileOnly deps.android.recyclerview
-    //compile 'com.ufreedom.kit:lubanadapter-annotations:1.0.1'
-    api project(':lubanadapter-annotations')
+    api 'com.ufreedom.kit:lubanadapter-annotations:1.2.0'
 
 }
 

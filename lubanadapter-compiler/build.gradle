@@ -13,8 +13,12 @@ ext {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //implementation 'com.ufreedom.kit:lubanadapter-annotations:1.0.1'
-    implementation project(':lubanadapter-annotations')
+    //use ./gradlew bintrayUpload
+    /*compile 'com.ufreedom.kit:lubanadapter-annotations:1.2.0'
+    compile deps.auto.service
+    compile deps.javapoet*/
+
+    implementation 'com.ufreedom.kit:lubanadapter-annotations:1.2.0'
     implementation deps.auto.service
     implementation deps.javapoet
 
